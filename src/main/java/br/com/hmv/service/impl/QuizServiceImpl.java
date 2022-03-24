@@ -41,7 +41,6 @@ public class QuizServiceImpl implements QuizService {
 		Quiz quiz = mapper.quizDtoToQuizDomain(quizDTO);
 		
 		quiz.setPaciente(paciente);
-		//quiz.getPaciente().setId(paciente.getId());
 		
 		repository.save(quiz);
 		
