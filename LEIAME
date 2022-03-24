@@ -1,0 +1,10 @@
+
+
+Classe QRController: Metodo generateQRCodeImage recebe um link após o simbolo interrogação e 
+gera o qr code para esse link, exemplo: 
+
+http://localhost:9090/hmv/api/v1/getqrcode?url=https://start.spring.io/
+ 
+apos o "?" é o link que sera utilizado/direcionado no qr code 
+ 
+Classe BufferedImageConverter: Conversor de resposta em imagem
