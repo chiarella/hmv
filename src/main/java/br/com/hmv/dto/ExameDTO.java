@@ -12,6 +12,13 @@ public class ExameDTO implements Serializable {
 	private String tipoExame;
 	private String descricaoExame;
 	private String observacaoExame;
+	
+	
+
+	@Override
+	public String toString() {
+		return "Exame feito: " + descricaoExame;
+	}
 
 	public ExameDTO() {
 	}

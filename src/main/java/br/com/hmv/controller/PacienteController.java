@@ -33,11 +33,12 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import br.com.hmv.dto.PacienteDTO;
+import br.com.hmv.dto.PacienteRetornoQuizDTO;
 import br.com.hmv.entity.Paciente;
 import br.com.hmv.mapper.PacienteMapperManual;
+import br.com.hmv.mapper.PacienteMapperManualQuiz;
 import br.com.hmv.repository.PacienteRepository;
 import br.com.hmv.service.PacienteService;
-
 
 @RestController
 @RequestMapping("/api/v1/paciente")
@@ -50,10 +51,17 @@ public class PacienteController {
 
 	@Autowired
 	private PacienteRepository repository;
-	
+
 	@Autowired
 	private PacienteMapperManual mapper;
 
+	@Autowired
+	private PacienteMapperManualQuiz mapperQuiz;
+
+	/*
+	 * END POINT - OK http://localhost:9090/hmv/api/v1/paciente/generateQRCode?id=1
+	 * retorna http://localhost:9090/hmv/api/v1/paciente/findById/1
+	 */
 	@GetMapping(value = "/generateQRCode", produces = MediaType.IMAGE_PNG_VALUE)
 	public BufferedImage generateQRCodeWhitId(@RequestParam String id) throws Exception {
 
@@ -61,22 +69,25 @@ public class PacienteController {
 		BitMatrix bitMatrix = qrCodeWriter.encode(url + id, BarcodeFormat.QR_CODE, 250, 250);
 		return MatrixToImageWriter.toBufferedImage(bitMatrix);
 	}
-	
+
+	/*
+	 * END POINT - OK
+	 * http://localhost:9090/hmv/api/v1/paciente/generateQRCodeReturnList?id=1
+	 * retorna QR CODE ao ler em outro celular aparece uma lista customizada
+	 * PacienteRetornoQuizDTO
+	 */
 	@GetMapping(value = "/generateQRCodeReturnList", produces = MediaType.IMAGE_PNG_VALUE)
-	public BufferedImage generateQRCodeWhitIdRetunrListBD(@RequestParam String id)
-			throws Exception {
+	public BufferedImage generateQRCodeWhitIdRetunrListBD(@RequestParam Long id) throws Exception {
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
-		
-		Long teste2 = (long) Double.parseDouble(id);
-		
-		Optional<Paciente> listDTO = repository.findById(teste2);
-		PacienteDTO lista = mapper.pacienteDomainToPacienteDto(listDTO.get());
-		
+
+		Optional<Paciente> listDTO = repository.findById(id);
+		PacienteRetornoQuizDTO lista = mapperQuiz.pacienteDomainToPacienteDto(listDTO.get());
 		BitMatrix bitMatrix = qrCodeWriter.encode(lista.toString(), BarcodeFormat.QR_CODE, 250, 250);
+
 		return MatrixToImageWriter.toBufferedImage(bitMatrix);
 	}
-	
-	@GetMapping(value = "/getImage", produces = MediaType.IMAGE_JPEG_VALUE)
+
+	@GetMapping(value = "/getTestImage", produces = MediaType.IMAGE_JPEG_VALUE)
 	public @ResponseBody MBFImage findByCpf2() {
 		MBFImage image = null;
 		try {
@@ -126,10 +137,10 @@ public class PacienteController {
 	}
 
 	@GetMapping(value = "/getqrcode3/{cpf}", produces = MediaType.IMAGE_PNG_VALUE)
-	public BufferedImage generateQRCodeImage3(@RequestParam String cpf) throws Exception {
+	public BufferedImage generateQRCodeImage3(@RequestParam Long cpf) throws Exception {
 
 		String url = "https://www.terra.com.br/";
-		repository.findByCpf(cpf);
+		//repository.findByCpf(cpf);
 
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
 		BitMatrix bitMatrix = qrCodeWriter.encode(url, BarcodeFormat.QR_CODE, 250, 250);
@@ -173,6 +184,5 @@ public class PacienteController {
 	public ResponseEntity<Object> findByCpf(@PathVariable(value = "cpf") String cpf) {
 		return ResponseEntity.ok(service.findByCpf(cpf));
 	}
-
 
 }

@@ -41,7 +41,7 @@ public class Doenca implements Serializable {
 
 	@Column(name = "observacao_doenca")
 	private String observacaoDoenca;
-
+	
 	public Doenca() {
 	}
 

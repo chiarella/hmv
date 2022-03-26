@@ -33,17 +33,12 @@ public class QuizServiceImpl implements QuizService {
 
 	@Override
 	public String save(QuizDTO quizDTO, HttpStatus ok) {
-
 		
 		Paciente paciente = pacienteRepository.findByIdpaciente(quizDTO.getIdPaciente());
-		
 		quizDTO.setIdPaciente(paciente.getId());
 		Quiz quiz = mapper.quizDtoToQuizDomain(quizDTO);
-		
 		quiz.setPaciente(paciente);
-		
 		repository.save(quiz);
-		
 		return "Quiz cadastrado";
 	}
 
@@ -53,5 +48,10 @@ public class QuizServiceImpl implements QuizService {
 		return mapper.listQuizDomainToListQuizDto(quiz);
 	}
 
+	@Override
+	public QuizDTO findById(Long id) {
+		Optional<Quiz> quiz = repository.findById(id);
+		return mapper.quizDomainToQuizDto(quiz.get());
+	}
 	
 }

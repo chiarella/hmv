@@ -284,5 +284,7 @@ public class PacienteDTO implements Serializable {
 	public void setAgendas(List<AgendaDTO> agendas) {
 		this.agendas = agendas;
 	}
+	
+	
 
 }

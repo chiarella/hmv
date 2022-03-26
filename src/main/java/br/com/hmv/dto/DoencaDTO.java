@@ -9,6 +9,11 @@ public class DoencaDTO implements Serializable {
 	private Long idPaciente;
 	private String descricaoDoenca;
 	private String observacaoDoenca;
+	
+	@Override
+	public String toString() {
+		return "Doenca: "+ descricaoDoenca;
+	}
 
 	public DoencaDTO() {
 	}
@@ -52,10 +57,6 @@ public class DoencaDTO implements Serializable {
 		this.observacaoDoenca = observacaoDoenca;
 	}
 
-	@Override
-	public String toString() {
-		return "DoencaDTO [idDoenca=" + idDoenca + ", idPaciente=" + idPaciente + ", descricaoDoenca=" + descricaoDoenca
-				+ ", observacaoDoenca=" + observacaoDoenca + "]";
-	}
+
 
 }

@@ -181,6 +181,8 @@ public class PacienteMapperManual {
 		pacienteDto.setEnderecoCep(domain.getEnderecoCep());
 		pacienteDto.setTelefoneFixoPaciente(domain.getTelefoneFixoPaciente());
 		pacienteDto.setTelefoneCelPaciente(domain.getTelefoneCelPaciente());
+		pacienteDto.setIdadePaciente(domain.getIdadePaciente());
+		pacienteDto.setObservacoesPaciente(domain.getObservacoesPaciente());
 		pacienteDto.setConvenio(domain.getConvenio());
 		pacienteDto.setNumeroCarteirinha(domain.getNumeroCarteirinha());
 

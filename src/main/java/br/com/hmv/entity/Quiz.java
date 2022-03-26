@@ -2,7 +2,6 @@ package br.com.hmv.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -93,10 +92,10 @@ public class Quiz implements Serializable {
 		this.paciente = paciente;
 	}
 
-	public void setPaciente(Optional<Paciente> paciente2) {
-		// TODO Auto-generated method stub
-		
-	}
+//	public void setPaciente(Optional<Paciente> paciente2) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 	
 	
 	

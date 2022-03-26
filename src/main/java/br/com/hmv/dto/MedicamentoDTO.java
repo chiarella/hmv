@@ -11,6 +11,13 @@ public class MedicamentoDTO implements Serializable {
 	private String observacoesMedicamento;
 	private Long idPaciente;
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Medicamento: " + descricaoMedicamento;
+	}
+
 	public MedicamentoDTO() {
 	}
 

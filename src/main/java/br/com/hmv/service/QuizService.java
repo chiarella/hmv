@@ -17,4 +17,7 @@ public interface QuizService {
 	
 	List<QuizDTO> getAll();
 
+	QuizDTO findById(Long id);
+
+
 }

@@ -21,7 +21,7 @@ public class QuizMapperManual {
 		return quiz;
 	}
 	
-	private QuizDTO quizDomainToQuizDto(Quiz domain) {
+	public QuizDTO quizDomainToQuizDto(Quiz domain) {
 		QuizDTO quizDto = new QuizDTO();
 		quizDto.setIdQuiz(domain.getIdQuiz());
 		quizDto.setDescricaoQuiz(domain.getDescricaoQuiz());

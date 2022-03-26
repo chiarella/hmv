@@ -12,6 +12,11 @@ public class QuizDTO implements Serializable {
 	private LocalDateTime dataQuiz;
 	private Long idPaciente;
 	
+	@Override
+	public String toString() {
+		return "Descricao Quiz: " + descricaoQuiz;
+	}	
+	
 	
 	public QuizDTO() {
 	}
@@ -54,14 +59,5 @@ public class QuizDTO implements Serializable {
 	public void setIdPaciente(Long idPaciente) {
 		this.idPaciente = idPaciente;
 	}
-
-	@Override
-	public String toString() {
-		return "QuizSintomaDTO [idQuiz=" + idQuiz + ", descricaoQuiz=" + descricaoQuiz + ", statusQuiz=" + statusQuiz
-				+ ", dataQuiz=" + dataQuiz + ", idPaciente=" + idPaciente + "]";
-	}
-
-	
-	
 	
 }
