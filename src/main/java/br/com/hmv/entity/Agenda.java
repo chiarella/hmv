@@ -36,10 +36,6 @@ public class Agenda implements Serializable{
 	@Column(name = "hora_consulta_final")
 	private String horaConsultaFinal;
 
-	//Date dataHoraAtual = new Date();
-	//String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);	
-	//String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-
 	@ManyToOne
 	@JoinColumn(name = "id_paciente")
 	private Paciente paciente;

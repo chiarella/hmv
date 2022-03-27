@@ -41,7 +41,15 @@ public class PacienteServiceTest {
 	
 	@InjectMocks
 	private PacienteServiceImpl service;
-		
+	
+	/*
+	 * 		     <-------- LEIA ME -------->
+	 * 
+	 * VERIFICA SE O ID QUE ESTA DENTRO DO METADO ESTA PRESENTE NA BASE
+	 * 
+	 */
+	
+	
 	@Test
 	@Order(1)
 	void cadastrarPacienteServiceTest() {
@@ -82,7 +90,7 @@ public class PacienteServiceTest {
 	
 	@Test
 	@Order(3)
-	void buscaPorIdfluxoService() {
+	void buscaPacientePorIdfluxoService() {
 		Mockito.when(mapper.pacienteDomainToPacienteDto(Mockito.any
 				(Paciente.class))).thenReturn(new PacienteDTO());
 		Paciente paciente = new Paciente();

@@ -1,17 +1,9 @@
 package br.com.hmv.controller;
 
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
-import org.openimaj.image.ImageUtilities;
-import org.openimaj.image.MBFImage;
-import org.openimaj.io.IOUtils;
-import org.openimaj.io.WriteableBinary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,7 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.zxing.BarcodeFormat;
@@ -35,7 +26,6 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import br.com.hmv.dto.PacienteDTO;
 import br.com.hmv.dto.PacienteRetornoQuizDTO;
 import br.com.hmv.entity.Paciente;
-import br.com.hmv.mapper.PacienteMapperManual;
 import br.com.hmv.mapper.PacienteMapperManualQuiz;
 import br.com.hmv.repository.PacienteRepository;
 import br.com.hmv.service.PacienteService;
@@ -53,10 +43,8 @@ public class PacienteController {
 	private PacienteRepository repository;
 
 	@Autowired
-	private PacienteMapperManual mapper;
-
-	@Autowired
 	private PacienteMapperManualQuiz mapperQuiz;
+	
 
 	/*
 	 * END POINT - OK http://localhost:9090/hmv/api/v1/paciente/generateQRCode?id=1
@@ -86,38 +74,13 @@ public class PacienteController {
 		return MatrixToImageWriter.toBufferedImage(bitMatrix);
 	}
 
-	@GetMapping(value = "/getTestImage", produces = MediaType.IMAGE_JPEG_VALUE)
-	public @ResponseBody MBFImage findByCpf2() {
-		MBFImage image = null;
-		try {
-			image = ImageUtilities.readMBF(new File("C:\\WorkspaceJava\\hmv\\32032032098.jpg"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return image;
-	}
 
-	@GetMapping(value = "/getImage2", produces = MediaType.IMAGE_JPEG_VALUE)
-	public byte[] ReadImageAsByteArray() throws IOException {
-		String filename = "C:\\WorkspaceJava\\hmv\\32032032098.jpg";
-		byte[] buffer = new byte[1024];
-
-		InputStream is = this.getClass().getResourceAsStream(filename);
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-
-		while (is.read(buffer) != -1) {
-			out.write(buffer);
-		}
-		return out.toByteArray();
-	}
-
-	@GetMapping(value = "/getImage3", produces = MediaType.IMAGE_JPEG_VALUE)
-	public @ResponseBody byte[] getImageWithMediaType() throws IOException {
-
-		InputStream in = getClass().getResourceAsStream("C:\\WorkspaceJava\\hmv\\32032032098.jpg");
-		return IOUtils.serialize((WriteableBinary) in);// .toByteArray(in);
-	}
-
+	/*
+	 * END POINT - OK
+	 * http://localhost:9090/hmv/api/v1/paciente/getqrcode?url=https://start.spring.io/
+	 * retorna QR CODE com a String de uma URL recebida no endpoint
+	 * string recebida = https://start.spring.io/
+	 */
 	@GetMapping(value = "/getqrcode", produces = MediaType.IMAGE_PNG_VALUE)
 	public BufferedImage generateQRCodeImage(@RequestParam String url) throws Exception {
 		// QRcode generator logic
@@ -126,22 +89,32 @@ public class PacienteController {
 		return MatrixToImageWriter.toBufferedImage(bitMatrix);
 	}
 
+	/*
+	 * END POINT - OK
+	 * http://localhost:9090/hmv/api/v1/paciente/getqrcode2
+	 * retorna QR CODE com a String de uma URL fiza dentro do metodo
+	 * string FIXA = https://start.spring.io/
+	 */
 	@GetMapping(value = "/getqrcode2", produces = MediaType.IMAGE_PNG_VALUE)
 	public BufferedImage generateQRCodeImage5() throws Exception {
-		String url = "https://www.terra.com.br/";
+		String url = "https://start.spring.io/";
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
 		BitMatrix bitMatrix = qrCodeWriter.encode(url, BarcodeFormat.QR_CODE, 250, 250);
 		return MatrixToImageWriter.toBufferedImage(bitMatrix);
 	}
-
+	
+	/*
+	 * END POINT - OK
+	 * http://localhost:9090/hmv/api/v1/paciente/getqrcode3/32010473841
+	 * retorna QR CODE com uma lista referente aos dados do cliente
+	 * pesquisa no banco feita pelo CPF
+	 */
 	@GetMapping(value = "/getqrcode3/{cpf}", produces = MediaType.IMAGE_PNG_VALUE)
-	public BufferedImage generateQRCodeImage3(@RequestParam Long cpf) throws Exception {
-
-		String url = "https://www.terra.com.br/";
-		// repository.findByCpf(cpf);
-
+	public BufferedImage generateQRCodeImage3(@PathVariable(value = "cpf") String cpf) throws Exception {
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
-		BitMatrix bitMatrix = qrCodeWriter.encode(url, BarcodeFormat.QR_CODE, 250, 250);
+		Optional<Paciente> listDTO = repository.findByCpf(cpf);
+		PacienteRetornoQuizDTO lista = mapperQuiz.pacienteDomainToPacienteDto(listDTO.get());
+		BitMatrix bitMatrix = qrCodeWriter.encode(lista.toString(), BarcodeFormat.QR_CODE, 250, 250);
 		return MatrixToImageWriter.toBufferedImage(bitMatrix);
 	}
 

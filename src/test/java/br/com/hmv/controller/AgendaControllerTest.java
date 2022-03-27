@@ -20,20 +20,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import br.com.hmv.dto.QuizDTO;
-import br.com.hmv.service.QuizService;
+import br.com.hmv.dto.AgendaDTO;
+import br.com.hmv.service.AgendaService;
 
 @SpringBootTest 
 @ExtendWith(MockitoExtension.class) 
 @AutoConfigureMockMvc 
-public class QuizControllerTest {
+public class AgendaControllerTest {
 	
 	@InjectMocks
-	private QuizController controller;
+	private AgendaController controller;
 	
 	@Mock
-	private QuizService service;
-	
+	private AgendaService service;
 	
 	@Autowired
 	private MockMvc mockMvc;
@@ -43,27 +42,26 @@ public class QuizControllerTest {
 	 * 
 	 * VERIFICA SE O ID QUE ESTA DENTRO DO METADO ESTA PRESENTE NA BASE
 	 * 
-	 * linha 66 trocar o 1 por 2 ou 3 ....
+	 * linha 62 = "d}",1)" ,_ trocar o 1 por 2 ou 3
 	 * 
 	 */
-
+	
 	@Test
 	@Order(1)
-	void salvarQuiz() {
+	void salvarAgenda() {
 		Mockito.when(service.save(Mockito.any())).thenReturn("ok");
-		QuizDTO dto = new QuizDTO();
-		dto.setDescricaoQuiz("Descrição quiz teste");
+		AgendaDTO dto = new AgendaDTO();
+		dto.setDataConsulta(null);
 		
 		ResponseEntity<String> dtoEntity = controller.save(dto);
 		Assert.assertNotNull("message", dtoEntity);
-		
 	}
 	
 	@Test
 	@Order(2)
-	void buscarQuizPorId() throws Exception {
+	void buscarAgendaPorId() throws Exception {
 		this.mockMvc.perform(
-				get("/api/v1/quiz/findById/{id}",1)
+				get("/api/v1/agenda/findById/{id}",1)
 				.accept(MediaType.APPLICATION_JSON))
 	      .andDo(print())
 	      .andExpect(status().is2xxSuccessful());
@@ -73,11 +71,10 @@ public class QuizControllerTest {
 	@Order(3)
 	void todosQuiz() throws Exception {		
 		this.mockMvc.perform( MockMvcRequestBuilders
-				      .get("/api/v1/quiz/getAll")
+				      .get("/api/v1/agenda/getAll")
 				      .accept(MediaType.APPLICATION_JSON))
 				      .andDo(print())
 				      .andExpect(status().is2xxSuccessful());
 	}
-	
-	
+
 }

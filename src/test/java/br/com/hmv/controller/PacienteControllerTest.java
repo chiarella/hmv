@@ -1,6 +1,7 @@
 package br.com.hmv.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -44,11 +45,17 @@ public class PacienteControllerTest {
 
 	/*
 	 * 		     <-------- LEIA ME -------->
-	 * OBS se der erro no teste do deletar o paciente alterar o id do metodo
+	 * 
+	 * 		metodo deletarPaciente() DESCOMENTAR O TESTE 7 (VAI APAGAR O ID 3)
+	 * 
+	 * 
+	 * OBS se der erro no teste do deletarPaciente alterar o id do metodo
 	 * (provavelmente o id em questão) ja foi apagado alterar o numero nessa linha
 	 * delete("/api/v1/paciente/delete/{id}",1) ALTERAR DE 1 para 2 ou 3 ou 4
 	 * 
-	 * metodo deletarPaciente()
+	 * metodo deletarPaciente() DESCOMENTAR O TESTE 7
+	 * 
+	 * VERIFICA SE O ID QUE ESTA DENTRO DO METADO ESTA PRESENTE NA BASE
 	 * 
 	 */
 
@@ -60,6 +67,27 @@ public class PacienteControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
+	
+//	@Test
+//	@Order(7)
+//	void deletarPaciente() throws Exception {
+//			this.mockMvc.perform(
+//				/*
+//				 * OBS se der erro no teste do deletar o paciente 
+//				 * alterar o id do metodo (provavelmente o id em questão)
+//				 * ja foi apagado alterar o numero nessa linha
+//				 * 	delete("/api/v1/paciente/delete/{id}",3)
+//				 * ALTERAR DE 1 para 2 ou 3 ou 4
+//				 * 
+//				 * metodo deletarPaciente()
+//				 * 
+//				 */
+//					delete("/api/v1/paciente/delete/{id}",3)
+//					.accept(MediaType.APPLICATION_JSON))
+//		      .andDo(print())
+//		      .andExpect(status().is2xxSuccessful());
+//		}
+//	
 
 	@Test
 	@Order(1)
@@ -114,40 +142,20 @@ public class PacienteControllerTest {
 	@Test
 	@Order(5)
 	void alterarPaciente() throws Exception {
-		this.mockMvc.perform(put("/api/v1/paciente/update/{id}", 2).accept(MediaType.APPLICATION_JSON)).andDo(print())
+		this.mockMvc.perform(put("/api/v1/paciente/update/{id}", 2).accept(MediaType.APPLICATION_JSON))
+				.andDo(print())
 				.andExpect(status().is2xxSuccessful());
 	}
 	
-		
-//	@Test
-//	@Order(6)
-//	void deletarPaciente() throws Exception {
-//			this.mockMvc.perform(
-//				/*
-//				 * OBS se der erro no teste do deletar o paciente 
-//				 * alterar o id do metodo (provavelmente o id em questão)
-//				 * ja foi apagado alterar o numero nessa linha
-//				 * 	delete("/api/v1/paciente/delete/{id}",1)
-//				 * ALTERAR DE 1 para 2 ou 3 ou 4
-//				 * 
-//				 * metodo deletarPaciente()
-//				 * 
-//				 */
-//					delete("/api/v1/paciente/delete/{id}",1)
-//					.accept(MediaType.APPLICATION_JSON))
-//		      .andDo(print())
-//		      .andExpect(status().is2xxSuccessful());
-//		}
-	
 	@Test
-	@Order(7)
+	@Order(6)
 	void buscarPacienteCpf() throws Exception {
-		this.mockMvc.perform(get("/api/v1/paciente/findByCpf/{cpf}", "32010473841")
+		this.mockMvc.perform(get("/api/v1/paciente/findByCpf/{cpf}", "123123")
 				.accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().is2xxSuccessful());
 	}
-
+		
 
 	static String asJsonString(final Object obj) {
 		try {

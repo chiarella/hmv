@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import br.com.hmv.dto.AgendaDTO;
 import br.com.hmv.dto.DoencaDTO;
 import br.com.hmv.dto.ExameDTO;
 import br.com.hmv.dto.HabitoDTO;
@@ -13,6 +14,7 @@ import br.com.hmv.dto.MedicamentoDTO;
 import br.com.hmv.dto.PacienteDTO;
 import br.com.hmv.dto.QuizDTO;
 import br.com.hmv.dto.ResponsavelDTO;
+import br.com.hmv.entity.Agenda;
 import br.com.hmv.entity.Doenca;
 import br.com.hmv.entity.Exame;
 import br.com.hmv.entity.Habito;
@@ -82,6 +84,14 @@ public class PacienteMapperManual {
 			listHabito.add(habito);			
 		}
 		
+		
+		List<Agenda> listAgenda = new ArrayList<Agenda>();
+		for(AgendaDTO agendaDTO :  dto.getAgendas()) {
+			Agenda agenda = this.agendaDtoToAgendaDomain(agendaDTO);
+			agenda.setPaciente(paciente);
+			listAgenda.add(agenda);
+		}
+		
 		List<Quiz> listQuizSintoma = new ArrayList<>();
 		for (QuizDTO quizSintomaDTO : dto.getQuiz()) {
 			Quiz quizSintoma = this.quizDtoToQuizDomain(quizSintomaDTO);
@@ -94,6 +104,7 @@ public class PacienteMapperManual {
 		paciente.setResponsaveis(listResponsavel);
 		paciente.setMedicamentos(listMedicamento);
 		paciente.setHabitos(listHabito);
+		paciente.setAgendas(listAgenda);
 		paciente.setQuiz(listQuizSintoma);
 
 	return paciente;
@@ -146,6 +157,16 @@ public class PacienteMapperManual {
 		domain.setStatusHabito(habitoDTO.getStatusHabito());
 		return domain;
 	}
+	
+	private Agenda agendaDtoToAgendaDomain(AgendaDTO agendaDTO) {
+		Agenda domain = new Agenda();
+		domain.setIdAgenda(agendaDTO.getIdAgenda());
+		domain.setDataConsulta(agendaDTO.getDataConsulta());
+		domain.setHoraConsultaInicial(agendaDTO.getHoraConsultaInicial());
+		domain.setHoraConsultaFinal(agendaDTO.getHoraConsultaFinal());
+		return domain;
+	}
+		
 
 	private Quiz quizDtoToQuizDomain(QuizDTO quizDTO) {
 		Quiz domain = new Quiz();
@@ -227,6 +248,14 @@ public class PacienteMapperManual {
 		}
 		pacienteDto.setHabitos(listHabito);
 		
+		List<AgendaDTO> listAgenda = new ArrayList<>();
+		for (Agenda agenda: domain.getAgendas()) {
+			AgendaDTO agendaDTO = this.agendaDomainToAgendaDTO(agenda);
+			agendaDTO.setIdPaciente(pacienteDto.getId());
+			listAgenda.add(agendaDTO);
+		}
+		pacienteDto.setAgendas(listAgenda);
+		
 		List<QuizDTO> listQuizSintoma = new ArrayList<>();
 		for (Quiz quizSintoma: domain.getQuiz()) {
 			QuizDTO quizSintomaDTO = this.quizDomainToQuizDTO(quizSintoma);
@@ -235,10 +264,10 @@ public class PacienteMapperManual {
 		}
 		pacienteDto.setQuizSintomas(listQuizSintoma);
 		
-		
-		
 		return pacienteDto;
 	}
+
+
 
 	private DoencaDTO doencaDomainToDoencaDTO(Doenca domain) {
 		DoencaDTO doencaDto = new DoencaDTO();
@@ -284,6 +313,15 @@ public class PacienteMapperManual {
 		habitoDTO.setDescricaoHabito(domain.getDescricaoHabito());
 		habitoDTO.setStatusHabito(domain.getStatusHabito());
 		return habitoDTO;
+	}
+	
+	private AgendaDTO agendaDomainToAgendaDTO(Agenda domain) {
+		AgendaDTO agendaDTO = new AgendaDTO();
+		agendaDTO.setIdAgenda(domain.getIdAgenda());
+		agendaDTO.setDataConsulta(domain.getDataConsulta());
+		agendaDTO.setHoraConsultaInicial(domain.getHoraConsultaInicial());
+		agendaDTO.setHoraConsultaFinal(domain.getHoraConsultaFinal());
+		return agendaDTO;
 	}
 	
 	private QuizDTO quizDomainToQuizDTO(Quiz domain) {

@@ -49,12 +49,9 @@ public class QuizController {
 	public BufferedImage generrateQRCode(@RequestParam Long id) throws WriterException {
 		
 		service.findById(id);
-		
 		String url = "https://www.terra.com.br/";
-		
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
 		BitMatrix bitMatrix = qrCodeWriter.encode(url, BarcodeFormat.QR_CODE, 250, 250);
-		
 		return MatrixToImageWriter.toBufferedImage(bitMatrix);
 	}
 
