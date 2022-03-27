@@ -40,7 +40,7 @@ Dependências:
 * mapstruct OBS: Apresentou problema o mesmo esta comentando e a codificação foi feita manual entrara na 2ª Parte do projeto
 
 
-`Subindo projeto`
+` **Executar o projeto**
 
 * Para subri o projeto é necessário ter uma ide para desenvolvimento java e um JDK na versão 11. No caso da ide utilizamos o eclipse.
 
@@ -55,6 +55,7 @@ Dependências:
 OBS: A ultima frase da aba console sera algo como "Started HmvApplication", caso não aparecer essa mensagem, repetir os passos ou
 entrar em contato com o desenvolvedor
 
+ `
 
 **Testes**
 
