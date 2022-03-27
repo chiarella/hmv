@@ -31,8 +31,8 @@ public class QuizController {
 	private QuizService service;
 	
 	@PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody QuizDTO quizDTO) throws Exception {
-			return new ResponseEntity<>(service.save(quizDTO, null), HttpStatus.OK);
+	public ResponseEntity<String> save(@RequestBody QuizDTO quizDTO) {
+			return new ResponseEntity<>(service.save(quizDTO), HttpStatus.OK);
 	}
 	
 	@GetMapping("/getAll")

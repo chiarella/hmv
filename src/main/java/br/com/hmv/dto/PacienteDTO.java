@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+@JsonRootName(value = "pacienteDTO")
 public class PacienteDTO implements Serializable {
 
 	private static final long serialVersionUID = 3510963398910862749L;
@@ -70,6 +73,14 @@ public class PacienteDTO implements Serializable {
 		this.quiz = quiz;
 		this.agendas = agendas;
 	}
+
+//	public PacienteDTO(String randomString, Object object) {
+//		// TODO Auto-generated constructor stub
+//	}
+//	public PacienteDTO(String nomePaciente, String sobrenomePaciente) {
+//		this.nomePaciente = nomePaciente;
+//		this.sobrenomePaciente = sobrenomePaciente;
+//	}
 
 	@Override
 	public String toString() {

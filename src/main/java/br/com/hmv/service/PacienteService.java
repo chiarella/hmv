@@ -1,12 +1,10 @@
 package br.com.hmv.service;
 
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import br.com.hmv.dto.PacienteDTO;
@@ -16,7 +14,8 @@ import br.com.hmv.dto.PacienteDTO;
 @Transactional
 public interface PacienteService {
 
-	String save(PacienteDTO pacienteDTO, HttpStatus ok) throws IOException;
+	
+	String save(PacienteDTO pacienteDTO);
 	
 	List<PacienteDTO> getAll();
 	

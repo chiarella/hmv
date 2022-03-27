@@ -83,7 +83,6 @@ public class PacienteController {
 		Optional<Paciente> listDTO = repository.findById(id);
 		PacienteRetornoQuizDTO lista = mapperQuiz.pacienteDomainToPacienteDto(listDTO.get());
 		BitMatrix bitMatrix = qrCodeWriter.encode(lista.toString(), BarcodeFormat.QR_CODE, 250, 250);
-
 		return MatrixToImageWriter.toBufferedImage(bitMatrix);
 	}
 
@@ -95,7 +94,6 @@ public class PacienteController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		return image;
 	}
 
@@ -140,23 +138,17 @@ public class PacienteController {
 	public BufferedImage generateQRCodeImage3(@RequestParam Long cpf) throws Exception {
 
 		String url = "https://www.terra.com.br/";
-		//repository.findByCpf(cpf);
+		// repository.findByCpf(cpf);
 
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
 		BitMatrix bitMatrix = qrCodeWriter.encode(url, BarcodeFormat.QR_CODE, 250, 250);
 		return MatrixToImageWriter.toBufferedImage(bitMatrix);
 	}
 
-	@PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody PacienteDTO pacienteDTO) throws Exception {
 
-		try {
-			return new ResponseEntity<>(service.save(pacienteDTO, null), HttpStatus.OK);
-		} catch (Exception e) {
-			// return new ResponseEntity<>(montarObjetoErroResponse(e.getMessage()),
-			// HttpStatus.CONFLICT);
-			return new ResponseEntity<>(service.save(pacienteDTO, null), HttpStatus.OK);
-		}
+	@PostMapping("/save")
+	public ResponseEntity<String> save(@RequestBody PacienteDTO pacienteDTO) {
+		return new ResponseEntity<>(service.save(pacienteDTO), HttpStatus.OK);
 	}
 
 	@GetMapping("/getAll")

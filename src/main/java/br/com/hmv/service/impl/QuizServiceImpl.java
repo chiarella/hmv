@@ -6,7 +6,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import br.com.hmv.dto.QuizDTO;
@@ -32,7 +31,7 @@ public class QuizServiceImpl implements QuizService {
 	private QuizMapperManual mapper;
 
 	@Override
-	public String save(QuizDTO quizDTO, HttpStatus ok) {
+	public String save(QuizDTO quizDTO) {
 		
 		Paciente paciente = pacienteRepository.findByIdpaciente(quizDTO.getIdPaciente());
 		quizDTO.setIdPaciente(paciente.getId());

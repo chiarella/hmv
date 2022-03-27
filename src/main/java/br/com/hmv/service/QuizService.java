@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import br.com.hmv.dto.QuizDTO;
@@ -13,7 +12,7 @@ import br.com.hmv.dto.QuizDTO;
 @Transactional
 public interface QuizService {
 
-	String save(QuizDTO quizDTO, HttpStatus ok);
+	String save(QuizDTO quizDTO);
 	
 	List<QuizDTO> getAll();
 
