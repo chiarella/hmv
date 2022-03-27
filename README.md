@@ -44,7 +44,7 @@ Dependências:
 
 * Para subir o projeto é necessário ter uma ide para desenvolvimento java e um JDK na versão 11. No caso da ide utilizamos o eclipse.
 
-* Dentro do ao baixar o codigo efetuar o import do mesmo na aba File -> Import
+* Dentro do IDE ao baixar o codigo efetuar o import do mesmo na aba File -> Import
   Escolher a opção: existing maven projects -> next
   Escolha o local aonde efetuou o download do projeto e Finish (projeto precisa estar descompactado)
   
