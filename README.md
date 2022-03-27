@@ -40,9 +40,9 @@ Dependências:
 * mapstruct OBS: Apresentou problema o mesmo esta comentando e a codificação foi feita manual entrara na 2ª Parte do projeto
 
 
-` **Executar o projeto**
+` **Executar o projeto**  `
 
-* Para subri o projeto é necessário ter uma ide para desenvolvimento java e um JDK na versão 11. No caso da ide utilizamos o eclipse.
+* Para subir o projeto é necessário ter uma ide para desenvolvimento java e um JDK na versão 11. No caso da ide utilizamos o eclipse.
 
 * Dentro do ao baixar o codigo efetuar o import do mesmo na aba File -> Import
   Escolher a opção: existing maven projects -> next
@@ -55,14 +55,15 @@ Dependências:
 OBS: A ultima frase da aba console sera algo como "Started HmvApplication", caso não aparecer essa mensagem, repetir os passos ou
 entrar em contato com o desenvolvedor
 
- `
+
 
 **Testes**
 
 * Para facilitar os testes esta disponível na raiz do projeto a "Collection Json" do postman utilizado para desenvolvimento
-podendo assim até simular o front-end para testes.
+podendo assim até simular o front-end para testes, fora a simulação do fron temos a camada de testes abaixo.
 
-* Todos os testes da aplicação estão nas classes, respectivos na acplicação as camadas de controller e service
+* Todos os testes da aplicação estão nas classes abaixo, as classes são respectivas as camadas de controller e service
+* Estão localizados dentro de src/test/java
 * Para rodar os teste clique dentro da classe com o botão direito "Run As" -> JUnit test
    * AgendaControllerTest
    * PacienteControllerTest
