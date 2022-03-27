@@ -23,61 +23,61 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import br.com.hmv.dto.QuizDTO;
 import br.com.hmv.service.QuizService;
 
-//@SpringBootTest 
-//@ExtendWith(MockitoExtension.class) 
-//@AutoConfigureMockMvc 
-//public class QuizControllerTest {
-//	
-//	@InjectMocks
-//	private QuizController controller;
-//	
-//	@Mock
-//	private QuizService service;
-//	
-//	
-//	@Autowired
-//	private MockMvc mockMvc;
-//	
-//	/*
-//	 * 		     <-------- LEIA ME -------->
-//	 * 
-//	 * VERIFICA SE O ID QUE ESTA DENTRO DO METADO ESTA PRESENTE NA BASE
-//	 * 
-//	 * linha 66 trocar o 1 por 2 ou 3 ....
-//	 * 
-//	 */
-//
-//	@Test
-//	@Order(1)
-//	void salvarQuiz() {
-//		Mockito.when(service.save(Mockito.any())).thenReturn("ok");
-//		QuizDTO dto = new QuizDTO();
-//		dto.setDescricaoQuiz("Descrição quiz teste");
-//		
-//		ResponseEntity<String> dtoEntity = controller.save(dto);
-//		Assert.assertNotNull("message", dtoEntity);
-//		
-//	}
-//	
-//	@Test
-//	@Order(2)
-//	void buscarQuizPorId() throws Exception {
-//		this.mockMvc.perform(
-//				get("/api/v1/quiz/findById/{id}",1)
-//				.accept(MediaType.APPLICATION_JSON))
-//	      .andDo(print())
-//	      .andExpect(status().is2xxSuccessful());
-//	}
-//	
-//	@Test
-//	@Order(3)
-//	void todosQuiz() throws Exception {		
-//		this.mockMvc.perform( MockMvcRequestBuilders
-//				      .get("/api/v1/quiz/getAll")
-//				      .accept(MediaType.APPLICATION_JSON))
-//				      .andDo(print())
-//				      .andExpect(status().is2xxSuccessful());
-//	}
-//	
-//	
-//}
+@SpringBootTest 
+@ExtendWith(MockitoExtension.class) 
+@AutoConfigureMockMvc 
+public class QuizControllerTest {
+	
+	@InjectMocks
+	private QuizController controller;
+	
+	@Mock
+	private QuizService service;
+	
+	
+	@Autowired
+	private MockMvc mockMvc;
+	
+	/*
+	 * 		     <-------- LEIA ME -------->
+	 * 
+	 * VERIFICA SE O ID QUE ESTA DENTRO DO METADO ESTA PRESENTE NA BASE
+	 * 
+	 * linha 66 trocar o 1 por 2 ou 3 ....
+	 * 
+	 */
+
+	@Test
+	@Order(1)
+	void salvarQuiz() {
+		Mockito.when(service.save(Mockito.any())).thenReturn("ok");
+		QuizDTO dto = new QuizDTO();
+		dto.setDescricaoQuiz("Descrição quiz teste");
+		
+		ResponseEntity<String> dtoEntity = controller.save(dto);
+		Assert.assertNotNull("message", dtoEntity);
+		
+	}
+	
+	@Test
+	@Order(2)
+	void buscarQuizPorId() throws Exception {
+		this.mockMvc.perform(
+				get("/api/v1/quiz/findById/{id}",1)
+				.accept(MediaType.APPLICATION_JSON))
+	      .andDo(print())
+	      .andExpect(status().is2xxSuccessful());
+	}
+	
+	@Test
+	@Order(3)
+	void todosQuiz() throws Exception {		
+		this.mockMvc.perform( MockMvcRequestBuilders
+				      .get("/api/v1/quiz/getAll")
+				      .accept(MediaType.APPLICATION_JSON))
+				      .andDo(print())
+				      .andExpect(status().is2xxSuccessful());
+	}
+	
+	
+}
