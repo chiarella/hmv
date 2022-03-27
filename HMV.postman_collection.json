@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "94dbb2b5-4259-40fe-8811-3c4ca804afc9",
+		"name": "HMV",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PACIENTE - SAVE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomePaciente\": \"Anderson\",\r\n    \"sobrenomePaciente\": \"Dos Santos\",\r\n    \"emailPaciente\": \"marcos@gmail.com\",\r\n    \"cpf\": \"32010473841\",\r\n    \"enderecoRua\": \"Avenida Paulista\",\r\n    \"enderecoNro\": \"Avenida Paulista\",\r\n    \"enderecoComplemento\": \"AP02\",\r\n    \"enderecoBairro\": \"Consolação\",\r\n    \"enderecoCidade\": \"São Paulo\",\r\n    \"enderecoUF\": \"SP\",\r\n    \"enderecoCep\": \"05055-00\",\r\n    \"telefoneFixoPaciente\": 1132323232,\r\n    \"telefoneCelPaciente\": 11932323232,\r\n    \"idadePaciente\": 30,\r\n    \"observacoesPaciente\": \"Nada a declarar\",\r\n    \"convenio\": \"Porto Seguro\",\r\n    \"numeroCarteirinha\": \"1234567890-0010\",\r\n    \"doencas\": [\r\n        {\r\n            \"descricaoDoenca\": \"derrame\",\r\n            \"observacaoDoenca\": null\r\n        },\r\n        {\r\n            \"descricaoDoenca\": \"diabetes\",\r\n            \"observacaoDoenca\": null\r\n        }\r\n    ],\r\n    \"exames\": [\r\n        {\r\n            \"tipoExame\": null,\r\n            \"descricaoExame\": \"doppler coracao\",\r\n            \"observacaoExame\": null\r\n        },\r\n        {\r\n            \"tipoExame\": null,\r\n            \"descricaoExame\": \"sangue\",\r\n            \"observacaoExame\": null\r\n        },\r\n        {\r\n            \"tipoExame\": null,\r\n            \"descricaoExame\": \"urina\",\r\n            \"observacaoExame\": null\r\n        }\r\n    ],\r\n    \"responsaveis\": [\r\n        {\r\n            \"nomeResponsavel\": \"Marcos\",\r\n            \"sobrenomeResponsavel\": \"Dos Santos Junior\",\r\n            \"parentescoResponsavel\": \"Filho\",\r\n            \"emailResponsavel\": \"marcosjunior@gmail.com\",\r\n            \"telefoneFixoResponsavel\": 1158585858,\r\n            \"telefoneCelresponsavel\": 1198778787,\r\n            \"observacoesResponsavel\": \"Qualquer problema com paciente entrar em contato com o Filho\"\r\n        }\r\n    ],\r\n    \"medicamentos\": [\r\n        {\r\n            \"descricaoMedicamento\": \"Flavonid\",\r\n            \"statusMedicamento\": true,\r\n            \"observacoesMedicamento\": \"Observação do medicamento\"\r\n        },\r\n        {\r\n            \"descricaoMedicamento\": \"Venovaz\",\r\n            \"statusMedicamento\": true,\r\n            \"observacoesMedicamento\": \"Observação do medicamento\"\r\n        }\r\n    ],\r\n    \"habitos\": [\r\n        {\r\n            \"descricaoHabito\": \"Descricao de habito\",\r\n            \"statusHabito\": true\r\n        }\r\n    ],\r\n    \"quiz\": [\r\n        {\r\n            \"descricaoQuiz\": \"Dor forte no peito\",\r\n            \"statusQuiz\": true,\r\n            \"dataQuiz\": \"2022-03-25T20:01:00.15773\"\r\n        }\r\n    ],\r\n    \"agendas\": [\r\n        {\r\n            \"dataConsulta\": \"2022-03-25T20:01:00.15773\",\r\n            \"horaConsultaInicial\": \"13:30\",\r\n            \"horaConsultaFinal\": \"14:00\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/hmv/api/v1/paciente/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hmv",
+						"api",
+						"v1",
+						"paciente",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PACIENTE - GET ALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/hmv/api/v1/paciente/getAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hmv",
+						"api",
+						"v1",
+						"paciente",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PACIENTE - FIND BY CPF",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/hmv/api/v1/paciente/findByCpf/123123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hmv",
+						"api",
+						"v1",
+						"paciente",
+						"findByCpf",
+						"123123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PACIENTE - FIND BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/hmv/api/v1/paciente/findById/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hmv",
+						"api",
+						"v1",
+						"paciente",
+						"findById",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PACIENTE - UPDATE",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"nomePaciente\": \"Marcos\",\r\n    \"sobrenomePaciente\": \"Dos Santos UPDATE\",\r\n    \"emailPaciente\": \"marcos@gmail.com\",\r\n    \"cpf\": \"3203203209\",\r\n    \"enderecoRua\": \"Avenida Paulista\",\r\n    \"enderecoNro\": \"Avenida Paulista\",\r\n    \"enderecoComplemento\": \"AP02\",\r\n    \"enderecoBairro\": \"Consolação\",\r\n    \"enderecoCidade\": \"São Paulo\",\r\n    \"enderecoUF\": \"SP\",\r\n    \"enderecoCep\": \"05055-00\",\r\n    \"telefoneFixoPaciente\": 1132323232,\r\n    \"telefoneCelPaciente\": 11932323232,\r\n    \"idadePaciente\": null,\r\n    \"observacoesPaciente\": null,\r\n    \"convenio\": \"Porto Seguro\",\r\n    \"numeroCarteirinha\": \"1234567890-0010\",\r\n    \"doencas\": [\r\n\r\n    ],\r\n    \"exames\": [\r\n\r\n    ],\r\n    \"responsaveis\": [\r\n\r\n    ],\r\n    \"medicamentos\": [\r\n\r\n    ],\r\n    \"habitos\": [\r\n\r\n    ],\r\n    \"quiz\": [\r\n    ],\r\n    \"agendas\": [\r\n        \r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/hmv/api/v1/paciente/update/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hmv",
+						"api",
+						"v1",
+						"paciente",
+						"update",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QUIZ - SAVE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descricaoQuiz\": \"DESCRICAO\",\r\n    \"statusQuiz\": true,\r\n    \"dataQuiz\": \"\",\r\n    \"idPaciente\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/hmv/api/v1/quiz/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hmv",
+						"api",
+						"v1",
+						"quiz",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QUIZ - FIND BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/hmv/api/v1/quiz/findById/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hmv",
+						"api",
+						"v1",
+						"quiz",
+						"findById",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QUIZ - GET ALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/hmv/api/v1/quiz/getAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hmv",
+						"api",
+						"v1",
+						"quiz",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AGENDA - SAVE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dataConsulta\": \"2022-03-25T20:01:00.15773\",\r\n    \"horaConsultaInicial\": \"13:30\",\r\n    \"horaConsultaFinal\": \"15:00\",\r\n    \"idPaciente\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/hmv/api/v1/agenda/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hmv",
+						"api",
+						"v1",
+						"agenda",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AGENDA - GET ALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/hmv/api/v1/agenda/getAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hmv",
+						"api",
+						"v1",
+						"agenda",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AGENDA - FIND BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/hmv/api/v1/agenda/findById/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hmv",
+						"api",
+						"v1",
+						"agenda",
+						"findById",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
