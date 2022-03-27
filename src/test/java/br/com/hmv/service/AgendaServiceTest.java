@@ -3,7 +3,6 @@ package br.com.hmv.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +17,7 @@ import br.com.hmv.entity.Agenda;
 import br.com.hmv.mapper.AgendaMapperManual;
 import br.com.hmv.repository.AgendaRepository;
 import br.com.hmv.service.impl.AgendaServiceImpl;
+import junit.framework.Assert;
 
 @ExtendWith(MockitoExtension.class)
 public class AgendaServiceTest {
